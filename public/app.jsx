@@ -50,9 +50,10 @@ function h (type, props, ...children) {
 let zxc = { qwer: { some: 'thing' } }
 
 let a = <zxc.qwer a={sayHey}>
-  <i>{0}</i>
+  <f:image>{0}</f:image>
   <i>{1}</i>
   {[2, 3].map(x => <i>{x}</i>)}
+
   <>
     <i>{4}</i>
     <i>{5}</i>
@@ -60,6 +61,7 @@ let a = <zxc.qwer a={sayHey}>
   <>
     {[6, 7].map(x => <i>{x}</i>)}
   </>
+  asdf
 </zxc.qwer>
 
 console.log(a)
