@@ -26,11 +26,43 @@ customElements.define('customized-built-in-element', Customized, { extends: 'div
 let custom = document.createElement('div', { is: 'customized-built-in-element' })
 document.body.appendChild(custom)
 
-function dom (a, b, c) {
-  console.log(a, b, c)
+const hFrag = Symbol('hFrag')
+
+function expandChildren (children) {
+  let expanded = []
+  children.forEach(child => {
+    if (Array.isArray(child)) {
+      expanded = expanded.concat(expandChildren(child))
+    } else if (child.type === hFrag) {
+      expanded = expanded.concat(expandChildren(child.children))
+    } else {
+      expanded.push(child)
+    }
+  })
+  return expanded
 }
 
-let a = <qwer a={sayHey}>asdf</qwer>
+function h (type, props, ...children) {
+  const expandedChildren = expandChildren(children)
+  return { type, props, children: expandedChildren }
+}
+
+let zxc = { qwer: { some: 'thing' } }
+
+let a = <zxc.qwer a={sayHey}>
+  <i>{0}</i>
+  <i>{1}</i>
+  {[2, 3].map(x => <i>{x}</i>)}
+  <>
+    <i>{4}</i>
+    <i>{5}</i>
+  </>
+  <>
+    {[6, 7].map(x => <i>{x}</i>)}
+  </>
+</zxc.qwer>
+
+console.log(a)
 
 function sayHey () {
   console.log('hey')
