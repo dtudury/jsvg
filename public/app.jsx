@@ -6,18 +6,19 @@ const menu = <Menu.tag a='1' b='1'><i>asdf</i></Menu.tag>
 console.log(menu)
 document.body.appendChild(menu)
 
-const item = <Item.tag a='3' b='4'><i>asdf</i></Item.tag>
+const item = <Item.tag a={{ foo: 'bar' }} b='4'><i>asdf</i></Item.tag>
 console.log(item)
 document.body.appendChild(item)
 
+/*
 function sayHey () {
   console.log('hey')
 }
 
 let a = <zxc a={sayHey}>
-  <f:image>{0}</f:image>
+  <i>{0}</i>
   {null}
-  <i>{1}</i>
+  <i> {1}</i >
   {[2, 3].map(x => <i>{x}</i>)}
 
   <>
@@ -28,6 +29,7 @@ let a = <zxc a={sayHey}>
     {[6, 7].map(x => <i>{x}</i>)}
   </>
   asdf
-</zxc>
+</zxc >
 
 console.log(a)
+*/

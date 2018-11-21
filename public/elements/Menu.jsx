@@ -1,4 +1,6 @@
-/* global customElements HTMLDivElement */
+/* global HTMLDivElement */
+import { tag } from '../lib'
+
 export default class Menu extends HTMLDivElement {
   constructor () {
     super()
@@ -19,9 +21,10 @@ export default class Menu extends HTMLDivElement {
   attributeChangedCallback (name, oldValue, newValue) {
     console.log('attributeChangedCallback', name, oldValue, newValue)
   }
-  static tag () {
-    return document.createElement('div', { is: 'menu-element' })
-  }
   static get observedAttributes () { return ['a', 'b'] }
+  static tag (attributes, children) {
+    return tag(Menu, attributes, children)
+  }
+  static get NAME () { return 'menu-element' }
+  static get EXTENDS () { return 'div' }
 }
-customElements.define('menu-element', Menu, { extends: 'div' })
