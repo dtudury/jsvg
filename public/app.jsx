@@ -1,56 +1,22 @@
-/* global customElements HTMLElement HTMLDivElement */
+import Menu from './elements/Menu.jsx'
+import Item from './elements/Item.jsx'
+import { h, hFrag } from './lib' // eslint-disable-line no-unused-vars
 
-import { HtmlView, TextView } from './View'
+const menu = <Menu.tag a='1' b='1'><i>asdf</i></Menu.tag>
+console.log(menu)
+document.body.appendChild(menu)
 
-class Autonomous extends HTMLElement {
-  constructor () {
-    super()
-    let wrapper = document.createElement('span')
-    wrapper.appendChild(document.createTextNode('text node in span in shadow in autonomous element'))
+const item = <Item.tag a='3' b='4'><i>asdf</i></Item.tag>
+console.log(item)
+document.body.appendChild(item)
 
-    let shadow = this.attachShadow({ mode: 'open' })
-    shadow.appendChild(wrapper)
-  }
-}
-customElements.define('autonomous-custom-element', Autonomous)
-let autonomous = document.createElement('autonomous-custom-element')
-document.body.appendChild(autonomous)
-
-class Customized extends HTMLDivElement {
-  constructor () {
-    super()
-    this.appendChild(document.createTextNode('text node in customized element'))
-  }
-}
-customElements.define('customized-built-in-element', Customized, { extends: 'div' })
-let custom = document.createElement('div', { is: 'customized-built-in-element' })
-document.body.appendChild(custom)
-
-const hFrag = Symbol('hFrag')
-
-function expandChildren (children) {
-  let expanded = []
-  children.forEach(child => {
-    if (Array.isArray(child)) {
-      expanded = expanded.concat(expandChildren(child))
-    } else if (child.type === hFrag) {
-      expanded = expanded.concat(expandChildren(child.children))
-    } else {
-      expanded.push(child)
-    }
-  })
-  return expanded
+function sayHey () {
+  console.log('hey')
 }
 
-function h (type, props, ...children) {
-  const expandedChildren = expandChildren(children)
-  return { type, props, children: expandedChildren }
-}
-
-let zxc = { qwer: { some: 'thing' } }
-
-let a = <zxc.qwer a={sayHey}>
+let a = <zxc a={sayHey}>
   <f:image>{0}</f:image>
+  {null}
   <i>{1}</i>
   {[2, 3].map(x => <i>{x}</i>)}
 
@@ -62,16 +28,6 @@ let a = <zxc.qwer a={sayHey}>
     {[6, 7].map(x => <i>{x}</i>)}
   </>
   asdf
-</zxc.qwer>
+</zxc>
 
 console.log(a)
-
-function sayHey () {
-  console.log('hey')
-}
-const test = new HtmlView('div',
-  { onclick: sayHey }, [
-    new TextView([__dirname, __filename].join(' '))
-  ]
-)
-document.body.appendChild(test.element)
