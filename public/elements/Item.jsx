@@ -1,5 +1,6 @@
 /* global HTMLElement */
-import { h, tag } from '../lib' // eslint-disable-line no-unused-vars
+
+import h from '../h' // eslint-disable-line no-unused-vars
 
 export default class Item extends HTMLElement {
   constructor () {
@@ -25,7 +26,7 @@ export default class Item extends HTMLElement {
   }
   static get observedAttributes () { return ['a', 'b'] }
   static tag (attributes, children) {
-    return tag(Item, attributes, children)
+    return h.buildCustomElement(Item, attributes, children)
   }
   static get NAME () {
     return 'item-element'

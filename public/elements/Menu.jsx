@@ -1,5 +1,6 @@
 /* global HTMLDivElement */
-import { tag } from '../lib'
+
+import h from '../h'
 
 export default class Menu extends HTMLDivElement {
   constructor () {
@@ -26,7 +27,7 @@ export default class Menu extends HTMLDivElement {
     return ['a', 'b']
   }
   static tag (attributes, children) {
-    return tag(Menu, attributes, children)
+    return h.buildCustomElement(Menu, attributes, children)
   }
   static get NAME () {
     return 'menu-element'
