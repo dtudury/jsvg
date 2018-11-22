@@ -66,16 +66,31 @@ export function h (tag, attributes = {}, ...children) {
   return element
 }
 
+const nameMapping = new Map()
+let nameMappingCount = 0
+export function getNameFor (Element) {
+  if (Element.NAME) {
+    return Element.NAME
+  }
+  let name = nameMapping.get(Element)
+  if (!name) {
+    name = `el-${nameMappingCount++}`
+    nameMapping.set(Element, name)
+  }
+  return name
+}
+
 export function tag (Element, attributes, children, namespaceURI = 'http://www.w3.org/1999/xhtml') {
   const customized = mapElementClass(Element)
-  if (!customElements.get(Element.NAME)) {
-    customElements.define(Element.NAME, Element, { extends: customized })
+  const name = getNameFor(Element)
+  if (!customElements.get(name)) {
+    customElements.define(name, Element, { extends: customized })
   }
   let element
   if (customized) {
-    element = document.createElementNS(namespaceURI, customized, { is: Element.NAME })
+    element = document.createElementNS(namespaceURI, customized, { is: name })
   } else {
-    element = document.createElementNS(namespaceURI, Element.NAME)
+    element = document.createElementNS(namespaceURI, name)
   }
   setAttributes(element, attributes)
   setChildren(element, children)
