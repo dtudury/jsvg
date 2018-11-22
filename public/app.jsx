@@ -1,15 +1,17 @@
-import Menu from './elements/Menu.jsx'
-import Item from './elements/Item.jsx'
-import h from './h' // eslint-disable-line no-unused-vars
+import CustomizedTest from './elements/CustomizedTest.jsx'
+import AutonomousTest from './elements/AutonomousTest.jsx'
+import SlotTest from './elements/SlotTest.jsx'
+import h from '../lib/h' // eslint-disable-line no-unused-vars
 
-const menu = <Menu.tag a='1' b='1'><i>asdf</i></Menu.tag>
-console.log(menu)
-document.body.appendChild(menu)
+// Component experiment
+document.body.appendChild(<CustomizedTest.tag a='1' b='1'><i>asdf</i></CustomizedTest.tag>)
 
-const item = <Item.tag a={{ foo: 'bar' }} b='4'><i>asdf</i></Item.tag>
-console.log(item)
-document.body.appendChild(item)
+document.body.appendChild(<AutonomousTest.tag a={{ foo: 'bar' }} b='4'>this won't show up</AutonomousTest.tag>)
 
+document.body.appendChild(<SlotTest.tag><b slot='test'>bold text</b></SlotTest.tag>)
+document.body.appendChild(<SlotTest.tag><i slot='test'>italic text</i></SlotTest.tag>)
+
+// SVG experiment
 h.setDefaultXlmns('http://www.w3.org/2000/svg')
 let svgExample = <svg version='1.1' baseProfile='full' width='300' height='200' viewBox='0 0 300 200'>
   <>
@@ -19,19 +21,14 @@ let svgExample = <svg version='1.1' baseProfile='full' width='300' height='200' 
   </>
 </svg >
 h.resetDefaultXlmns()
-
 document.body.appendChild(svgExample)
 
-function sayHey () {
-  console.log('hey')
-}
-
-let a = <zxc a={sayHey}>
+// children flattening experiment
+let a = <p>
   <i>{0}</i>
-  {null}
   <i> {1}</i >
   {[2, 3].map(x => <i>{x}</i>)}
-
+  {null}
   <>
     <i>{4}</i>
     <i>{5}</i>
@@ -40,6 +37,6 @@ let a = <zxc a={sayHey}>
     {[6, 7].map(x => <i>{x}</i>)}
   </>
   asdf
-</zxc >
+</p>
 
 console.log(a)

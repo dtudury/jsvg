@@ -1,8 +1,8 @@
 /* global HTMLDivElement */
 
-import h from '../h'
+import h from '../../lib/h'
 
-export default class Menu extends HTMLDivElement {
+export default class CustomizedTest extends HTMLDivElement {
   constructor () {
     super()
     this.addEventListener('click', this)
@@ -27,9 +27,9 @@ export default class Menu extends HTMLDivElement {
     return ['a', 'b']
   }
   static tag (attributes, children) {
-    return h.buildCustomElement(Menu, attributes, children)
+    return h.buildCustomElement(CustomizedTest, attributes, children)
   }
   static get NAME () {
-    return 'menu-element'
+    return 'customized-element'
   }
 }
