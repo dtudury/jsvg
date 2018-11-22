@@ -9,8 +9,8 @@ export default class SlotTest extends HTMLElement {
 
     const shadow = this.attachShadow({ mode: 'open' })
     shadow.appendChild(<p style='color: cyan;'>
-      This is a slot:<slot name='test'>default text</slot><br />
-      It's name is test. Hi test!
+      This is a slot: <slot name='test'>boring text</slot><br />
+      If there's something other than "boring text" then it's working
     </p>)
   }
   handleEvent (e) { this['on' + e.type](e) }

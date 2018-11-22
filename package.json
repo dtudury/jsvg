@@ -4,7 +4,7 @@
   "description": "jsx svg experiments",
   "main": "index.js",
   "scripts": {
-    "start": "parcel --no-hmr --no-cache public/index.html",
+    "start": "parcel --no-hmr --no-cache demo/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -8,8 +8,8 @@ document.body.appendChild(<CustomizedTest.tag a='1' b='1'><i>asdf</i></Customize
 
 document.body.appendChild(<AutonomousTest.tag a={{ foo: 'bar' }} b='4'>this won't show up</AutonomousTest.tag>)
 
-document.body.appendChild(<SlotTest.tag><b slot='test'>bold text</b></SlotTest.tag>)
-document.body.appendChild(<SlotTest.tag><i slot='test'>italic text</i></SlotTest.tag>)
+document.body.appendChild(<SlotTest.tag><b slot='test'>thrilling bold text</b></SlotTest.tag>)
+document.body.appendChild(<SlotTest.tag><i slot='test'>fascinating italic text</i></SlotTest.tag>)
 
 // SVG experiment
 h.setDefaultXlmns('http://www.w3.org/2000/svg')
@@ -25,18 +25,17 @@ document.body.appendChild(svgExample)
 
 // children flattening experiment
 let a = <p>
-  <i>{0}</i>
-  <i> {1}</i >
-  {[2, 3].map(x => <i>{x}</i>)}
+  <i>{0}</i>0
+  <i>{1}</i>1
+  {[2, 3].map(x => <><i>{x}</i>{x}</>)}
   {null}
   <>
-    <i>{4}</i>
-    <i>{5}</i>
+    <i>{4}</i>4
+    <i>{5}</i>5
   </>
   <>
-    {[6, 7].map(x => <i>{x}</i>)}
+    {[6, 7].map(x => <><i>{x}</i>{x}</>)}
   </>
-  asdf
 </p>
 
 console.log(a)
