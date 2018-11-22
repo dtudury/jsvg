@@ -1,7 +1,7 @@
 {
-  "name": "jsvg",
+  "name": "jsvgx",
   "version": "0.0.0",
-  "description": "js svg experiments",
+  "description": "jsx svg experiments",
   "main": "index.js",
   "scripts": {
     "start": "parcel --no-hmr --no-cache public/index.html",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dtudury/jsvg.git"
+    "url": "git+https://github.com/dtudury/jsvgx.git"
   },
   "author": "david.tudury@gmail.com",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/dtudury/jsvg/issues"
+    "url": "https://github.com/dtudury/jsvgx/issues"
   },
-  "homepage": "https://github.com/dtudury/jsvg#readme",
+  "homepage": "https://github.com/dtudury/jsvgx#readme",
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/plugin-transform-react-jsx": "^7.1.6",
