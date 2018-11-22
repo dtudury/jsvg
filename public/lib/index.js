@@ -81,4 +81,3 @@ export function tag (Element, attributes, children, namespaceURI = 'http://www.w
   setChildren(element, children)
   return element
 }
-
