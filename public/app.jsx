@@ -10,7 +10,6 @@ const item = <Item.tag a={{ foo: 'bar' }} b='4'><i>asdf</i></Item.tag>
 console.log(item)
 document.body.appendChild(item)
 
-/*
 function sayHey () {
   console.log('hey')
 }
@@ -32,4 +31,3 @@ let a = <zxc a={sayHey}>
 </zxc >
 
 console.log(a)
-*/

@@ -27,5 +27,7 @@ export default class Item extends HTMLElement {
   static tag (attributes, children) {
     return tag(Item, attributes, children)
   }
-  static get NAME () { return 'item-element' }
+  static get NAME () {
+    return 'item-element'
+  }
 }

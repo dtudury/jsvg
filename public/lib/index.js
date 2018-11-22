@@ -1,5 +1,7 @@
 /* global customElements Node */
 
+import mapElementClass from './mapElementClass'
+
 export function setAttributes (element, attributes) {
   for (const attribute in attributes) {
     const value = attributes[attribute]
@@ -18,8 +20,6 @@ export function unpackChildren (children) {
     if (child != null) {
       if (Array.isArray(child)) {
         expanded = expanded.concat(unpackChildren(child))
-      } else if (child.type === hFrag) {
-        expanded = expanded.concat(unpackChildren(child.children))
       } else {
         expanded.push(child)
       }
@@ -67,12 +67,13 @@ export function h (tag, attributes = {}, ...children) {
 }
 
 export function tag (Element, attributes, children, namespaceURI = 'http://www.w3.org/1999/xhtml') {
+  const customized = mapElementClass(Element)
   if (!customElements.get(Element.NAME)) {
-    customElements.define(Element.NAME, Element, { extends: Element.EXTENDS })
+    customElements.define(Element.NAME, Element, { extends: customized })
   }
   let element
-  if (Element.EXTENDS) {
-    element = document.createElementNS(namespaceURI, Element.EXTENDS, { is: Element.NAME })
+  if (customized) {
+    element = document.createElementNS(namespaceURI, customized, { is: Element.NAME })
   } else {
     element = document.createElementNS(namespaceURI, Element.NAME)
   }
@@ -80,3 +81,4 @@ export function tag (Element, attributes, children, namespaceURI = 'http://www.w
   setChildren(element, children)
   return element
 }
+
