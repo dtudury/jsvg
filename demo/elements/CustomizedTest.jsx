@@ -12,24 +12,18 @@ export default class CustomizedTest extends HTMLDivElement {
     this['on' + e.type](e)
   }
   onclick (e) {
-    console.log(e)
+    console.log('CustomizedTest onclick', this, e)
   }
   connectedCallback () {
-    console.log('connectedCallback')
+    console.log('CustomizedTest connectedCallback')
   }
   disconnectedCallback () {
-    console.log('disconnectedCallback')
+    console.log('CustomizedTest disconnectedCallback')
   }
   attributeChangedCallback (name, oldValue, newValue) {
-    console.log('attributeChangedCallback', name, oldValue, newValue)
+    console.log('CustomizedTest attributeChangedCallback', name, oldValue, newValue)
   }
   static get observedAttributes () {
     return ['a', 'b']
-  }
-  static tag (attributes, children) {
-    return h.buildCustomElement(CustomizedTest, attributes, children)
-  }
-  static get NAME () {
-    return 'customized-element'
   }
 }

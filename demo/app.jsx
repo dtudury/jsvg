@@ -1,15 +1,14 @@
 import CustomizedTest from './elements/CustomizedTest.jsx'
-import AutonomousTest from './elements/AutonomousTest.jsx'
 import SlotTest from './elements/SlotTest.jsx'
 import h from '../lib/h' // eslint-disable-line no-unused-vars
 
-// Component experiment
-document.body.appendChild(<CustomizedTest.tag a='1' b='1'><i>asdf</i></CustomizedTest.tag>)
+// Components experiment
+const CustomizedTestTag = h.customElementToTag(CustomizedTest)
+document.body.appendChild(<CustomizedTestTag a='1' b='1'><i>This is a customized div, it console.log's itself on click</i></CustomizedTestTag>)
 
-document.body.appendChild(<AutonomousTest.tag a={{ foo: 'bar' }} b='4'>this won't show up</AutonomousTest.tag>)
-
-document.body.appendChild(<SlotTest.tag><b slot='test'>thrilling bold text</b></SlotTest.tag>)
-document.body.appendChild(<SlotTest.tag><i slot='test'>fascinating italic text</i></SlotTest.tag>)
+const SlotTestTag = h.customElementToTag(SlotTest)
+document.body.appendChild(<SlotTestTag><b slot='test'>thrilling bold text</b></SlotTestTag>)
+document.body.appendChild(<SlotTestTag><i slot='test'>fascinating italic text</i></SlotTestTag>)
 
 // SVG experiment
 h.setDefaultXlmns('http://www.w3.org/2000/svg')
