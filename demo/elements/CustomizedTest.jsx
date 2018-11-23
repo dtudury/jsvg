@@ -15,7 +15,10 @@ export default class CustomizedTest extends HTMLDivElement {
     console.log('CustomizedTest onclick', this, e)
   }
   connectedCallback () {
-    console.log('CustomizedTest connectedCallback')
+    console.log('CustomizedTest connectedCallback', this.childNodes)
+    Array.from(this.childNodes).forEach(elem => {
+      console.log(elem.getClientRects())
+    })
   }
   disconnectedCallback () {
     console.log('CustomizedTest disconnectedCallback')
