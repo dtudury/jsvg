@@ -5,30 +5,34 @@ import h from '../../lib/h' // eslint-disable-line no-unused-vars
 export default class SlotTest extends HTMLElement {
   constructor () {
     super()
-    const shadow = this.attachShadow({ mode: 'open' })
-    const color = 'darkblue'
-    const background = 'lightblue'
-    let temp = <>
-      <style>{`
-        p {
-          color: ${color};
-          background: ${background};
-          animation: bounce 3s ease-in-out 1;
-          height: 50px;
-        }
-        @keyframes bounce {
-          0% { height: 50px; }
-          50% { height: 100px; }
-          100% { height: 50px; }
-        }
-      `}</style>
-      <p>
-        This is a slot: <slot name='test'>boring text</slot><br />
-        If there's something other than "boring text" then it's working
-      </p>
-    </>
-    console.log(temp)
-    h.setChildren(shadow, temp)
+    this.shadow = this.attachShadow({ mode: 'open' })
+
+    this.paragraph = <p>
+      This is a slot: <slot name='test'>boring text</slot><br />
+      If there's something other than "boring text" then it's working
+    </p>
+  }
+  update () {
+    if (!this.config) {
+      return
+    }
+    const style = <style>{`
+      p {
+        color: ${this.config.color};
+        background: ${this.config.background};
+        animation: bounce 1s ease-in-out 3;
+      }
+      @keyframes bounce {
+        0% { color: ${this.config.color}; background: ${this.config.background}}
+        50% { color: ${this.config.background}; background: ${this.config.color}}
+        100% { color: ${this.config.color}; background: ${this.config.background}}
+      }
+    `}</style>
+    h.setChildren(this.shadow, [style, this.paragraph])
+  }
+  setAttributes (attributes) {
+    Object.assign(this, attributes)
+    this.update()
   }
   static get NAME () {
     return 'slot-test-element'
