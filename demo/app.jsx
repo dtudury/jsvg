@@ -6,11 +6,11 @@ import h from '../lib/h' // eslint-disable-line no-unused-vars
 const CustomizedTestTag = h.customElementToTag(CustomizedTest)
 document.body.appendChild(<CustomizedTestTag a='1' b='1'><i>This is a customized div, it console.log's itself on click</i></CustomizedTestTag>)
 
-const configuration = {background:'lightgreen', color:'darkgreen'}
+const configuration = { background: 'lightgreen', color: 'darkgreen' }
 
 const SlotTestTag = h.customElementToTag(SlotTest)
 document.body.appendChild(<SlotTestTag config={configuration}><b slot='test'>thrilling bold text</b></SlotTestTag>)
-document.body.appendChild(<SlotTestTag config={{background:'black', color:'white'}}><i slot='test'>fascinating italic text</i></SlotTestTag>)
+document.body.appendChild(<SlotTestTag config={{ background: 'black', color: 'white' }}><i slot='test'>fascinating italic text</i></SlotTestTag>)
 
 // SVG experiment
 h.setDefaultXlmns('http://www.w3.org/2000/svg')

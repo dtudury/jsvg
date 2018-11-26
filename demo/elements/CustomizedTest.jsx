@@ -1,6 +1,6 @@
 /* global HTMLDivElement */
 
-import h from '../../lib/h'
+import h from '../../lib/h' // eslint-disable-line no-unused-vars
 
 export default class CustomizedTest extends HTMLDivElement {
   constructor () {
