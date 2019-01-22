@@ -9,7 +9,7 @@ document.body.appendChild(<CustomizedTestTag a='1' b='1'><i>This is a customized
 const configuration = { background: 'lightgreen', color: 'darkgreen' }
 
 const SlotTestTag = h.customElementToTag(SlotTest)
-document.body.appendChild(<SlotTestTag config={configuration}><b slot='test'>thrilling bold text</b></SlotTestTag>)
+document.body.appendChild(<SlotTestTag className='be-bold' config={configuration}><b slot='test'>thrilling bold text</b></SlotTestTag>)
 document.body.appendChild(<SlotTestTag config={{ background: 'black', color: 'white' }}><i slot='test'>fascinating italic text</i></SlotTestTag>)
 
 // SVG experiment

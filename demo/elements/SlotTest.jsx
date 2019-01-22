@@ -8,11 +8,12 @@ export default class SlotTest extends HTMLElement {
     this.shadow = this.attachShadow({ mode: 'open' })
 
     this.paragraph = <p>
-      This is a slot: <slot name='test'>boring text</slot><br />
+      This is a slot: <slot name='test' class='qwer'>boring text</slot><br />
       If there's something other than "boring text" then it's working
     </p>
   }
   update () {
+    console.log(this.class)
     if (!this.config) {
       return
     }
@@ -21,6 +22,12 @@ export default class SlotTest extends HTMLElement {
         color: ${this.config.color};
         background: ${this.config.background};
         animation: bounce 1s ease-in-out 3;
+      }
+      :host-context(.asdf) .qwer {
+        color: magenta;
+      }
+      :host(.be-bold) {
+        font-weight: bold;
       }
       @keyframes bounce {
         0% { color: ${this.config.color}; background: ${this.config.background}}
@@ -31,6 +38,10 @@ export default class SlotTest extends HTMLElement {
     h.setChildren(this.shadow, [style, this.paragraph])
   }
   setAttributes (attributes) {
+    console.log(attributes)
+    if (this.class) {
+      this.classList.add(this.class)
+    }
     Object.assign(this, attributes)
     this.update()
   }
